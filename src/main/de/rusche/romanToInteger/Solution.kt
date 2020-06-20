@@ -3,49 +3,75 @@ package de.rusche.romanToInteger
 import java.lang.RuntimeException
 
 class Solution {
+    companion object {
+        const val INVALID_COMBINATION: String = "Invalid combination"
+        const val INVALID_CHARACTER: String = "Invalid character"
+    }
+
+    var lastValue: Int = -1
+    var sameSymbol: Int = 0
+
     fun romanToInt(s: String): Int {
-        var sum: Int = 0
-        var lastValue: Int = getValueForSymbol(s.get(0))
-        var sameSymbol: Int = 0
+        var sum = 0
+        lastValue = getValueForSymbol(s[0])
+        sameSymbol = 0
 
         for (char: Char in s) {
-            val value: Int = getValueForSymbol(char)
-
-            if (lastValue == value) {
-                if (++sameSymbol == 4) {
-                    throw RuntimeException()
-                }
-            }
-            else {
-                sameSymbol = 0
-            }
-
-            if (lastValue < value) {
-                if (lastValue == 1 && value != 5 && value != 10) throw RuntimeException("Invalid combination")
-                if (lastValue == 10 && value != 50 && value != 100) throw RuntimeException("Invalid combination")
-                if (lastValue == 100 && value != 500 && value != 1000) throw RuntimeException("Invalid combination")
-
-                sum += value - lastValue * 2
-            }
-            else {
-                sum += value
-            }
-
-            lastValue = value
+            sum += processCharAndReturnValue(char)
         }
 
         return sum
     }
 
-    private fun getValueForSymbol(char: Char): Int {
-        if (char == 'I') return 1
-        if (char == 'V') return 5
-        if (char == 'X') return 10
-        if (char == 'L') return 50
-        if (char == 'C') return 100
-        if (char == 'D') return 500
-        if (char == 'M') return 1000
+    private fun processCharAndReturnValue(char: Char): Int {
+        val valueOfSymbol: Int = getValueForSymbol(char)
 
-        throw RuntimeException("Invalid character")
+        checkForSameSymbolAndThrowException(valueOfSymbol)
+        val valueToAdd = calculateValueToAdd(valueOfSymbol)
+        lastValue = valueOfSymbol
+
+        return valueToAdd
+    }
+
+    private fun checkForSameSymbolAndThrowException(valueOfSymbol: Int) {
+        if (lastValue == valueOfSymbol) {
+            if (++sameSymbol == 4) {
+                throw RuntimeException(INVALID_COMBINATION)
+            }
+        } else {
+            sameSymbol = 0
+        }
+    }
+
+    private fun calculateValueToAdd(valueOfSymbol: Int): Int {
+        return if (lastValue < valueOfSymbol) {
+            checkForInvalidSubtraction(valueOfSymbol)
+
+            valueOfSymbol - lastValue * 2
+        } else {
+            valueOfSymbol
+        }
+    }
+
+    // I is only allowed before V or X
+    // X is only allowed before L or C
+    // C is only allowed before D or M
+    private fun checkForInvalidSubtraction(valueOfSymbol: Int) {
+        if (valueOfSymbol != lastValue * 5 && valueOfSymbol != lastValue * 10) {
+            throw RuntimeException(INVALID_COMBINATION)
+        }
+    }
+
+    private fun getValueForSymbol(char: Char): Int {
+        return when (char) {
+            'I' -> 1
+            'V' -> 5
+            'X' -> 10
+            'L' -> 50
+            'C' -> 100
+            'D' -> 500
+            'M' -> 1000
+            else -> throw RuntimeException(INVALID_CHARACTER)
+        }
     }
 }

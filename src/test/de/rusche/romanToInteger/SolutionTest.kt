@@ -1,6 +1,6 @@
 package de.rusche.romanToInteger
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -16,67 +16,67 @@ internal class SolutionTest {
 
     @Test
     fun givenTestCase1() {
-        Assertions.assertEquals(3, solution.romanToInt("III"))
+        assertEquals(3, solution.romanToInt("III"))
     }
 
     @Test
     fun givenTestCase2() {
-        Assertions.assertEquals(4, solution.romanToInt("IV"))
+        assertEquals(4, solution.romanToInt("IV"))
     }
 
     @Test
     fun givenTestCase3() {
-        Assertions.assertEquals(9, solution.romanToInt("IX"))
+        assertEquals(9, solution.romanToInt("IX"))
     }
 
     @Test
     fun givenTestCase4() {
-        Assertions.assertEquals(58, solution.romanToInt("LVIII"))
+        assertEquals(58, solution.romanToInt("LVIII"))
     }
 
     @Test
     fun givenTestCase5() {
-        Assertions.assertEquals(1994, solution.romanToInt("MCMXCIV"))
+        assertEquals(1994, solution.romanToInt("MCMXCIV"))
     }
 
     @Test
     fun checkSymbolI() {
-        Assertions.assertEquals(1, solution.romanToInt("I"))
+        assertEquals(1, solution.romanToInt("I"))
     }
 
     @Test
     fun checkSymbolV() {
-        Assertions.assertEquals(5, solution.romanToInt("V"))
+        assertEquals(5, solution.romanToInt("V"))
     }
 
     @Test
     fun checkSymbolX() {
-        Assertions.assertEquals(10, solution.romanToInt("X"))
+        assertEquals(10, solution.romanToInt("X"))
     }
 
     @Test
     fun checkSymbolL() {
-        Assertions.assertEquals(50, solution.romanToInt("L"))
+        assertEquals(50, solution.romanToInt("L"))
     }
 
     @Test
     fun checkSymbolC() {
-        Assertions.assertEquals(100, solution.romanToInt("C"))
+        assertEquals(100, solution.romanToInt("C"))
     }
 
     @Test
     fun checkSymbolD() {
-        Assertions.assertEquals(500, solution.romanToInt("D"))
+        assertEquals(500, solution.romanToInt("D"))
     }
 
     @Test
     fun checkSymbolM() {
-        Assertions.assertEquals(1000, solution.romanToInt("M"))
+        assertEquals(1000, solution.romanToInt("M"))
     }
 
     @Test
     fun checkBiggestNumber() {
-        Assertions.assertEquals(3999, solution.romanToInt("MMMCMXCIX"))
+        assertEquals(3999, solution.romanToInt("MMMCMXCIX"))
     }
 
     @Test
