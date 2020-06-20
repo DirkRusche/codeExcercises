@@ -8,8 +8,8 @@ class Solution {
         const val INVALID_CHARACTER: String = "Invalid character"
     }
 
-    var lastValue: Int = -1
-    var sameSymbol: Int = 0
+    private var lastValue: Int = -1
+    private var sameSymbol: Int = 0
 
     fun romanToInt(s: String): Int {
         if (s.isEmpty()) return 0
