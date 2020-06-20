@@ -12,6 +12,8 @@ class Solution {
     var sameSymbol: Int = 0
 
     fun romanToInt(s: String): Int {
+        if (s.isEmpty()) return 0
+
         var sum = 0
         lastValue = getValueForSymbol(s[0])
         sameSymbol = 0

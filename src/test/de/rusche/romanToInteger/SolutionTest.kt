@@ -40,6 +40,11 @@ internal class SolutionTest {
     }
 
     @Test
+    fun checkEmptyString() {
+        assertEquals(0, solution.romanToInt(""))
+    }
+
+    @Test
     fun checkSymbolI() {
         assertEquals(1, solution.romanToInt("I"))
     }
@@ -107,11 +112,6 @@ internal class SolutionTest {
     @Test
     fun checkInvalidCombination490() {
         assertThrows<Throwable> { solution.romanToInt("XD") }
-    }
-
-    @Test
-    fun checkEmptyString() {
-        assertThrows<Throwable> { solution.romanToInt("") }
     }
 
     @Test
