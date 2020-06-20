@@ -44,8 +44,6 @@ repositories {
 sourceSets {
     main.kotlin.srcDirs += 'src/main'
     test.kotlin.srcDirs += 'src/test'
-
-//    main.kotlin.tstDirs += 'src/test'
 }
 
 dependencies {
